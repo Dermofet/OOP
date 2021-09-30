@@ -1,43 +1,43 @@
 #pragma once
 
 namespace geom {
-    struct Point { // структура точки
-        float x, y; // координаты
-        Point() : x(0), y(1) {} // конструктор по умолчанию
-        Point(float x, float y) : x(x), y(y) {} // инициализирующий конструктор
+    struct Point { // СЃС‚СЂСѓРєС‚СѓСЂР° С‚РѕС‡РєРё
+        float x, y; // РєРѕРѕСЂРґРёРЅР°С‚С‹
+        Point() : x(0), y(1) {} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        Point(float x, float y) : x(x), y(y) {} // РёРЅРёС†РёР°Р»РёР·РёСЂСѓСЋС‰РёР№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     };
 
     class Catenary {
     public:
-        // конструкторы
-        explicit Catenary(Point LLim = Point(-2, 1), Point RLim = Point(2, 1)); // конструктор по умолчанию
-        Catenary(float, float, float, float); // инициализирующий конструтор
+        // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
+        Catenary() : LLim(Point(-2, 1)), RLim(Point(2, 1)), Vert(Point()) {}; // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        Catenary(float, float, float, float); // РёРЅРёС†РёР°Р»РёР·РёСЂСѓСЋС‰РёР№ РєРѕРЅСЃС‚СЂСѓС‚РѕСЂ
 
-        // геттеры
-        [[nodiscard]] Point get_LLim() const { return LLim; };
-        [[nodiscard]] Point get_RLim() const { return RLim; };
-        [[nodiscard]] Point get_Vert() const { return Vert; };
+        // РіРµС‚С‚РµСЂС‹
+        Point get_LLim() const { return LLim; };
+        Point get_RLim() const { return RLim; };
+        Point get_Vert() const { return Vert; };
 
-        [[nodiscard]] float get_y(float, bool) const; // получение y по x
-        [[nodiscard]] float get_ArcLength() const; // получение длину линии
-        [[nodiscard]] float get_RadOfCurvature(float) const; // получение радиуса кривизны
-        [[nodiscard]] Point get_CenterOfCurvature(float) const; // получение координат центра кривизны
-        [[nodiscard]] float get_Square() const; // получение площади
+        float get_y(float, bool) const; // РїРѕР»СѓС‡РµРЅРёРµ y РїРѕ x
+        float get_ArcLength() const; // РїРѕР»СѓС‡РµРЅРёРµ РґР»РёРЅСѓ Р»РёРЅРёРё
+        float get_RadOfCurvature(float) const; // РїРѕР»СѓС‡РµРЅРёРµ СЂР°РґРёСѓСЃР° РєСЂРёРІРёР·РЅС‹
+        Point get_CenterOfCurvature(float) const; // РїРѕР»СѓС‡РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ С†РµРЅС‚СЂР° РєСЂРёРІРёР·РЅС‹
+        float get_Square() const; // РїРѕР»СѓС‡РµРЅРёРµ РїР»РѕС‰Р°РґРё
 
-        // сеттеры
-        void set_LLim(Point llim) { LLim = llim; }; // установить левый предел
-        void set_RLim(Point rlim) { RLim = rlim; }; // установить правый предел
-        void set_Vert(Point vert) { Vert = vert; }; // установить вершину
+        // СЃРµС‚С‚РµСЂС‹
+        void set_LLim(Point llim) { LLim = llim; }; // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ Р»РµРІС‹Р№ РїСЂРµРґРµР»
+        void set_RLim(Point rlim) { RLim = rlim; }; // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РїСЂР°РІС‹Р№ РїСЂРµРґРµР»
+        void set_Vert(Point vert) { Vert = vert; }; // СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РІРµСЂС€РёРЅСѓ
 
-        // прочие функции
-        void PrintStatus() const; // вывод состояния класса
+        // РїСЂРѕС‡РёРµ С„СѓРЅРєС†РёРё
+        void PrintStatus() const; // РІС‹РІРѕРґ СЃРѕСЃС‚РѕСЏРЅРёСЏ РєР»Р°СЃСЃР°
 
-        // деструктор
-        ~Catenary() = default; // деструктор
+        // РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+        ~Catenary() = default; // РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 
     private:
-        Point Vert, // вершина цепи
-            LLim, // левая граница
-            RLim; // правая граница
+        Point Vert, // РІРµСЂС€РёРЅР° С†РµРїРё
+              LLim, // Р»РµРІР°СЏ РіСЂР°РЅРёС†Р°
+              RLim; // РїСЂР°РІР°СЏ РіСЂР°РЅРёС†Р°
     };
 }
