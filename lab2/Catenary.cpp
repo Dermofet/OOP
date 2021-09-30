@@ -6,14 +6,7 @@
 using namespace std;
 using namespace geom;
 
-// конструкторы
-Catenary::Catenary(Point LLim, Point RLim)
-{
-    Catenary::set_LLim(LLim);
-    set_RLim(RLim);
-    set_Vert(Point());
-}
-
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 Catenary::Catenary(float x1, float x2, float Vx, float Vy)
 {
     if (Vy <= 0 || x1 > x2 || Vx < x1 || Vx > x2)
@@ -23,7 +16,7 @@ Catenary::Catenary(float x1, float x2, float Vx, float Vy)
     set_RLim(Point(x2, get_y(x2, false)));
 }
 
-// гетттеры
+// РіРµС‚С‚С‚РµСЂС‹
 float Catenary::get_y(float x, bool flag) const
 {
     if (flag && (x < LLim.x || x > RLim.x))
@@ -55,7 +48,7 @@ float Catenary::get_Square() const
     return (powf(Vert.y, 2.0) * (sinhf(RLim.x / Vert.y) - sinhf(LLim.x / Vert.y)));
 }
 
-// прочие функции
+// РїСЂРѕС‡РёРµ С„СѓРЅРєС†РёРё
 void Catenary::PrintStatus() const
 {
     cout << "Left limit = Point(" << this->LLim.x << ", " << this->LLim.y << ")" << endl;
